@@ -29,48 +29,65 @@
             width: 90%;
             max-width: 1200px;
             margin: auto;
-            padding: 40px 0;
+            padding: 20px 0;
         }
 
         .upload-section {
             background: #fff;
             border-radius: 12px;
             box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-            padding: 40px;
+            padding: 20px;
             text-align: center;
             position: relative;
+            margin-bottom: 20px;
         }
 
         .upload-section h1 {
             margin-bottom: 20px;
-            font-size: 26px;
+            font-size: 24px;
             font-weight: 700;
         }
 
-        .upload-section input[type="file"] {
+        .file-input-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             margin-bottom: 20px;
-            padding: 12px;
-            border-radius: 10px;
-            border: 1px solid #ccc;
-            background-color: #f8f9fa;
+        }
+
+        .file-input-container label {
+            background: #0062cc;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: inline-block;
             font-size: 16px;
+            transition: background 0.3s ease;
+        }
+
+        .file-input-container label:hover {
+            background: #0056b3;
+        }
+
+        .file-input-container input[type="file"] {
+            display: none;
         }
 
         .canvas-container {
             position: relative;
             width: 100%;
-            max-width: 800px;
-            height: 800px;
-            border: 3px solid #0062cc;
-            background: #f0f2f5;
+            max-width: 1000px;
+            height: auto;
             margin: 20px auto;
+            background: #f0f2f5;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         .canvas-container canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
+            display: block;
+            width: 100%;
+            height: auto;
         }
 
         .slider-container {
@@ -84,7 +101,7 @@
         }
 
         .slider-container input[type="range"] {
-            width: 80%;
+            width: 100%;
             max-width: 800px;
             margin: 0 auto;
             appearance: none;
@@ -133,9 +150,11 @@
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 18px;
+            font-size: 16px;
             transition: background 0.3s ease, transform 0.2s ease;
             outline: none;
+            width: 100%;
+            max-width: 300px;
         }
 
         .btn:hover {
@@ -177,6 +196,49 @@
             border: 1px solid #ccc;
             font-size: 16px;
         }
+
+        /* Media Queries for Responsive Design */
+        @media (max-width: 768px) {
+            .upload-section h1 {
+                font-size: 20px;
+            }
+
+            .btn {
+                font-size: 14px;
+                padding: 10px 20px;
+            }
+
+            .slider-container input[type="range"] {
+                width: 90%;
+            }
+
+            .download-options select {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .upload-section {
+                padding: 15px;
+            }
+
+            .upload-section h1 {
+                font-size: 18px;
+            }
+
+            .btn {
+                font-size: 12px;
+                padding: 8px 16px;
+            }
+
+            .slider-container input[type="range"] {
+                width: 100%;
+            }
+
+            .download-options select {
+                font-size: 12px;
+            }
+        }
     </style>
 </head>
 
@@ -190,7 +252,10 @@
     <div class="container">
         <div class="upload-section">
             <h1>Buat Twibbon Kamu</h1>
-            <input type="file" id="upload" accept="image/*">
+            <div class="file-input-container">
+                <label for="upload">Pilih Gambar</label>
+                <input type="file" id="upload" accept="image/*">
+            </div>
             <div class="canvas-container">
                 <canvas id="canvas" width="800" height="800"></canvas>
             </div>
@@ -245,13 +310,13 @@
             reader.onload = (event) => {
                 userImage.src = event.target.result;
                 userImage.onload = () => {
-                    // Store original image dimensions
-                    originalImageData.width = userImage.width;
-                    originalImageData.height = userImage.height;
-                    userImageData.width = userImage.width;
-                    userImageData.height = userImage.height;
-                    userImageData.x = (canvas.width - userImageData.width) / 2;
-                    userImageData.y = (canvas.height - userImageData.height) / 2;
+                    originalImageData = { width: userImage.width, height: userImage.height };
+                    userImageData = {
+                        x: (canvas.width - userImage.width) / 2,
+                        y: (canvas.height - userImage.height) / 2,
+                        width: userImage.width,
+                        height: userImage.height
+                    };
                     drawCanvas();
                 };
             };
@@ -260,14 +325,10 @@
 
         function drawCanvas() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            // Draw user image first (behind the Twibbon)
-            if (userImage.complete) {
+            if (userImage.src) {
                 ctx.drawImage(userImage, userImageData.x, userImageData.y, userImageData.width, userImageData.height);
             }
-            // Draw Twibbon design on top
-            if (twibbonImage.complete) {
-                ctx.drawImage(twibbonImage, 0, 0, canvas.width, canvas.height);
-            }
+            ctx.drawImage(twibbonImage, 0, 0, canvas.width, canvas.height);
         }
 
         canvas.addEventListener('mousedown', (e) => {
@@ -315,6 +376,7 @@
         }
 
         document.getElementById('size').addEventListener('input', updateSize);
+        window.addEventListener('load', updateSize); // Set initial size
     </script>
 </body>
 
