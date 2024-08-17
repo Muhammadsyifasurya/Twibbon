@@ -39,11 +39,10 @@ nav {
   font-size: 16px;
   font-weight: 500;
   padding: 10px 15px;
-  margin-right: 10px;
   border-radius: 8px;
   transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
   text-align: center; /* Center text in each menu item */
-  width: 80px; /* Set a fixed width for consistency */
+  width: 120px; /* Set a fixed width for consistency */
   display: flex; /* Use flexbox for vertical alignment */
   align-items: center; /* Center items vertically */
   justify-content: center; /* Center items horizontally */
