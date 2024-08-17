@@ -2,7 +2,7 @@ body {
   font-family: "Arial", sans-serif;
   margin: 0;
   padding: 0;
-  background: #f4f7f9;
+  background: #e0f7fa;
   color: #333;
 }
 
@@ -23,33 +23,28 @@ nav {
 .logo {
   font-size: 24px;
   font-weight: bold;
-  color: #0062cc;
+  color: #00796b;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
 .menu {
   display: flex;
-  gap: 0;
+  gap: 20px;
 }
 
 .menu a {
-  color: #333;
+  color: #00796b;
   text-decoration: none;
   font-size: 16px;
   font-weight: 500;
   padding: 10px 15px;
   border-radius: 8px;
   transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
-  text-align: center; /* Center text in each menu item */
-  width: 120px; /* Set a fixed width for consistency */
-  display: flex; /* Use flexbox for vertical alignment */
-  align-items: center; /* Center items vertically */
-  justify-content: center; /* Center items horizontally */
 }
 
 .menu a:hover {
-  background: #0062cc;
+  background: #00796b;
   color: #ffffff;
   transform: scale(1.05);
 }
@@ -63,7 +58,7 @@ nav {
 }
 
 .hamburger div {
-  background: #0062cc;
+  background: #00796b;
   height: 3px;
   width: 25px;
   margin: 4px 0;
@@ -87,7 +82,7 @@ nav {
 
 .mobile-menu a {
   padding: 10px 15px;
-  color: #333;
+  color: #00796b;
   text-decoration: none;
   font-size: 16px;
   display: block;
@@ -96,7 +91,7 @@ nav {
 }
 
 .mobile-menu a:hover {
-  background: #0062cc;
+  background: #00796b;
   color: #ffffff;
 }
 
@@ -115,7 +110,7 @@ nav {
 /* Header Section */
 header {
   text-align: center;
-  background: #0062cc;
+  background: #00796b;
   color: #fff;
   padding: 40px 20px;
   border-radius: 12px;
@@ -138,7 +133,7 @@ header p {
 
 /* Upload Section */
 .upload-section {
-  background: #fff;
+  background: #ffffff;
   border-radius: 12px;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
   padding: 20px;
@@ -161,7 +156,7 @@ header p {
 }
 
 .file-input-container label {
-  background: #0062cc;
+  background: #00796b;
   color: #fff;
   padding: 12px 24px;
   border-radius: 8px;
@@ -172,7 +167,7 @@ header p {
 }
 
 .file-input-container label:hover {
-  background: #0056b3;
+  background: #004d40;
 }
 
 .file-input-container input[type="file"] {
@@ -186,7 +181,7 @@ header p {
   max-width: 1000px;
   height: auto;
   margin: 20px auto;
-  background: #f0f2f5;
+  background: #b2dfdb;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -222,7 +217,7 @@ header p {
   appearance: none;
   width: 20px;
   height: 20px;
-  background: #0062cc;
+  background: #00796b;
   border-radius: 50%;
   cursor: pointer;
 }
@@ -230,7 +225,7 @@ header p {
 .slider-container input[type="range"]::-moz-range-thumb {
   width: 20px;
   height: 20px;
-  background: #0062cc;
+  background: #00796b;
   border-radius: 50%;
   cursor: pointer;
 }
@@ -252,7 +247,7 @@ header p {
 }
 
 .btn {
-  background: #007bff;
+  background: #00897b;
   color: #fff;
   padding: 12px 24px;
   border: none;
@@ -266,7 +261,7 @@ header p {
 }
 
 .btn:hover {
-  background: #0056b3;
+  background: #00695c;
   transform: scale(1.05);
 }
 
@@ -297,11 +292,11 @@ header p {
 
 /* Footer Styles */
 footer {
-  background: #0062cc; /* Warna yang serasi dengan navbar */
+  background: #00796b;
   color: #fff;
   padding: 20px 0;
   text-align: center;
-  border-top: 1px solid #004085;
+  border-top: 1px solid #004d40;
   position: relative;
   bottom: 0;
   width: 100%;
@@ -309,7 +304,7 @@ footer {
 }
 
 footer a {
-  color: #e0e0e0;
+  color: #e0f2f1;
   text-decoration: none;
   font-weight: bold;
   transition: color 0.3s ease;
@@ -388,4 +383,7 @@ footer p {
   border-radius: 8px;
   border: 1px solid #ccc;
   font-size: 16px;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
 }
