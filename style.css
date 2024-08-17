@@ -1,0 +1,392 @@
+body {
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f4f7f9;
+  color: #333;
+}
+
+/* Navbar Styles */
+nav {
+  background: #ffffff;
+  color: #333;
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #0062cc;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.menu {
+  display: flex;
+  gap: 0;
+}
+
+.menu a {
+  color: #333;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 10px 15px;
+  margin-right: 10px;
+  border-radius: 8px;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  text-align: center; /* Center text in each menu item */
+  width: 80px; /* Set a fixed width for consistency */
+  display: flex; /* Use flexbox for vertical alignment */
+  align-items: center; /* Center items vertically */
+  justify-content: center; /* Center items horizontally */
+}
+
+.menu a:hover {
+  background: #0062cc;
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+/* Hamburger Menu */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.hamburger div {
+  background: #0062cc;
+  height: 3px;
+  width: 25px;
+  margin: 4px 0;
+  border-radius: 2px;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  z-index: 20;
+  width: 200px;
+}
+
+.mobile-menu a {
+  padding: 10px 15px;
+  color: #333;
+  text-decoration: none;
+  font-size: 16px;
+  display: block;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+.mobile-menu a:hover {
+  background: #0062cc;
+  color: #ffffff;
+}
+
+.mobile-menu.show {
+  display: flex;
+}
+
+/* Container */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px 0;
+}
+
+/* Header Section */
+header {
+  text-align: center;
+  background: #0062cc;
+  color: #fff;
+  padding: 40px 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+header h1 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  font-family: "Roboto", sans-serif;
+}
+
+header p {
+  font-size: 18px;
+  font-weight: 300;
+  margin: 0;
+}
+
+/* Upload Section */
+.upload-section {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.upload-section h1 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.file-input-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.file-input-container label {
+  background: #0062cc;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  transition: background 0.3s ease;
+}
+
+.file-input-container label:hover {
+  background: #0056b3;
+}
+
+.file-input-container input[type="file"] {
+  display: none;
+}
+
+/* Canvas Container */
+.canvas-container {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+  margin: 20px auto;
+  background: #f0f2f5;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.canvas-container canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Slider Container */
+.slider-container {
+  margin: 20px 0;
+}
+
+.slider-container label {
+  font-size: 16px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.slider-container input[type="range"] {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  appearance: none;
+  height: 8px;
+  background: #ddd;
+  border-radius: 5px;
+  outline: none;
+}
+
+.slider-container input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #0062cc;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.slider-container input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #0062cc;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.slider-container span {
+  font-size: 16px;
+  font-weight: bold;
+  display: block;
+  margin-top: 5px;
+}
+
+/* Button Group */
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.btn {
+  background: #007bff;
+  color: #fff;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease, transform 0.2s ease;
+  outline: none;
+  width: 100%;
+  max-width: 300px;
+}
+
+.btn:hover {
+  background: #0056b3;
+  transform: scale(1.05);
+}
+
+.btn:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+}
+
+/* Download Options */
+.download-options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.download-options label {
+  font-size: 16px;
+}
+
+.download-options select {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+/* Footer Styles */
+footer {
+  background: #0062cc; /* Warna yang serasi dengan navbar */
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+  border-top: 1px solid #004085;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.1);
+}
+
+footer a {
+  color: #e0e0e0;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #ffffff;
+}
+
+footer p {
+  margin: 10px 0;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+  .menu {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  header h1 {
+    font-size: 28px;
+  }
+
+  header p {
+    font-size: 16px;
+  }
+
+  .btn {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+
+  .slider-container input[type="range"] {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 24px;
+  }
+
+  header p {
+    font-size: 14px;
+  }
+
+  .btn {
+    font-size: 12px;
+    padding: 8px 16px;
+  }
+
+  .slider-container input[type="range"] {
+    width: 100%;
+  }
+}
+
+/* Template Selector Styles */
+.template-selector {
+  margin-bottom: 20px;
+}
+
+.template-selector label {
+  font-size: 16px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.template-selector select {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}

@@ -5,253 +5,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Twibbon Maker</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #f4f7f9;
-            color: #333;
-        }
-
-        header {
-            background: linear-gradient(90deg, #0062cc 0%, #004085 100%);
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: auto;
-            padding: 20px 0;
-        }
-
-        .upload-section {
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            text-align: center;
-            position: relative;
-            margin-bottom: 20px;
-        }
-
-        .upload-section h1 {
-            margin-bottom: 20px;
-            font-size: 24px;
-            font-weight: 700;
-        }
-
-        .file-input-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .file-input-container label {
-            background: #0062cc;
-            color: #fff;
-            padding: 12px 24px;
-            border-radius: 8px;
-            cursor: pointer;
-            display: inline-block;
-            font-size: 16px;
-            transition: background 0.3s ease;
-        }
-
-        .file-input-container label:hover {
-            background: #0056b3;
-        }
-
-        .file-input-container input[type="file"] {
-            display: none;
-        }
-
-        .canvas-container {
-            position: relative;
-            width: 100%;
-            max-width: 1000px;
-            height: auto;
-            margin: 20px auto;
-            background: #f0f2f5;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .canvas-container canvas {
-            display: block;
-            width: 100%;
-            height: auto;
-        }
-
-        .slider-container {
-            margin: 20px 0;
-        }
-
-        .slider-container label {
-            font-size: 16px;
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        .slider-container input[type="range"] {
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
-            appearance: none;
-            height: 8px;
-            background: #ddd;
-            border-radius: 5px;
-            outline: none;
-        }
-
-        .slider-container input[type="range"]::-webkit-slider-thumb {
-            appearance: none;
-            width: 20px;
-            height: 20px;
-            background: #0062cc;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-
-        .slider-container input[type="range"]::-moz-range-thumb {
-            width: 20px;
-            height: 20px;
-            background: #0062cc;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-
-        .slider-container span {
-            font-size: 16px;
-            font-weight: bold;
-            display: block;
-            margin-top: 5px;
-        }
-
-        .button-group {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            align-items: center;
-            margin-top: 20px;
-        }
-
-        .btn {
-            background: #007bff;
-            color: #fff;
-            padding: 12px 24px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background 0.3s ease, transform 0.2s ease;
-            outline: none;
-            width: 100%;
-            max-width: 300px;
-        }
-
-        .btn:hover {
-            background: #0056b3;
-            transform: scale(1.05);
-        }
-
-        .btn:disabled {
-            background: #6c757d;
-            cursor: not-allowed;
-        }
-
-        footer {
-            background: #e9ecef;
-            color: #495057;
-            padding: 20px;
-            text-align: center;
-            border-top: 1px solid #dee2e6;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
-        }
-
-        .download-options {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .download-options label {
-            font-size: 16px;
-        }
-
-        .download-options select {
-            padding: 10px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            font-size: 16px;
-        }
-
-        /* Media Queries for Responsive Design */
-        @media (max-width: 768px) {
-            .upload-section h1 {
-                font-size: 20px;
-            }
-
-            .btn {
-                font-size: 14px;
-                padding: 10px 20px;
-            }
-
-            .slider-container input[type="range"] {
-                width: 90%;
-            }
-
-            .download-options select {
-                font-size: 14px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .upload-section {
-                padding: 15px;
-            }
-
-            .upload-section h1 {
-                font-size: 18px;
-            }
-
-            .btn {
-                font-size: 12px;
-                padding: 8px 16px;
-            }
-
-            .slider-container input[type="range"] {
-                width: 100%;
-            }
-
-            .download-options select {
-                font-size: 12px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <nav>
+        <div class="logo">Twibbon Maker</div>
+        <div class="menu">
+            <a href="#">Home</a>
+            <a href="#">Features</a>
+            <a href="#">Contact</a>
+        </div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#">Home</a>
+            <a href="#">Features</a>
+            <a href="#">Contact</a>
+        </div>
+    </nav>
+
     <header>
-        <img src="https://img.icons8.com/material-outlined/24/ffffff/camera.png" alt="Camera Icon">
-        <h1>Twibbon Maker</h1>
-        <p>Buat Twibbon keren kamu sekarang!</p>
+        <h1>Desain Twibbon Keren Kamu</h1>
+        <p>Buat Twibbon yang Membuatmu Terlihat Keren di Media Sosial!</p>
     </header>
 
     <div class="container">
         <div class="upload-section">
-            <h1>Buat Twibbon Kamu</h1>
+            <!-- Template Selector -->
+            <div class="template-selector">
+                <label for="template">Pilih Template:</label>
+                <select id="template">
+                    <option value="twibbon1.png">Template 1</option>
+                    <option value="twibbon2.png">Template 2</option>
+                    <option value="twibbon3.png">Template 3</option>
+                    <!-- Tambahkan lebih banyak opsi sesuai kebutuhan -->
+                </select>
+            </div>
+            <h1>Mulai Desain Twibbon</h1>
             <div class="file-input-container">
                 <label for="upload">Pilih Gambar</label>
                 <input type="file" id="upload" accept="image/*">
@@ -280,104 +74,16 @@
         </div>
     </div>
 
+    <!-- Footer Content -->
     <footer>
-        &copy; 2024 Twibbon Maker. Semua Hak Cipta Dilindungi.
+        <p>&copy; 2024 Twibbon Maker. Semua Hak Cipta Dilindungi.</p>
+        <p>
+            <a href="#">Privacy Policy</a> |
+            <a href="#">Terms of Service</a>
+        </p>
     </footer>
 
-    <script>
-        const canvas = document.getElementById('canvas');
-        const ctx = canvas.getContext('2d');
-        const upload = document.getElementById('upload');
-        const twibbonImage = new Image();
-        let userImage = new Image();
-        let isDragging = false;
-        let offsetX, offsetY;
-        let originalImageData = {};
-        let userImageData = { x: 0, y: 0, width: 0, height: 0 };
-
-        // Path ke desain Twibbon yang sesuai
-        twibbonImage.src = 'assets/twibbon1.png';
-
-        twibbonImage.onload = () => {
-            drawCanvas(); // Draw Twibbon design once it's loaded
-        };
-
-        // Handle file upload
-        upload.addEventListener('change', (e) => {
-            const file = e.target.files[0];
-            const reader = new FileReader();
-
-            reader.onload = (event) => {
-                userImage.src = event.target.result;
-                userImage.onload = () => {
-                    originalImageData = { width: userImage.width, height: userImage.height };
-                    userImageData = {
-                        x: (canvas.width - userImage.width) / 2,
-                        y: (canvas.height - userImage.height) / 2,
-                        width: userImage.width,
-                        height: userImage.height
-                    };
-                    drawCanvas();
-                };
-            };
-            reader.readAsDataURL(file);
-        });
-
-        function drawCanvas() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            if (userImage.src) {
-                ctx.drawImage(userImage, userImageData.x, userImageData.y, userImageData.width, userImageData.height);
-            }
-            ctx.drawImage(twibbonImage, 0, 0, canvas.width, canvas.height);
-        }
-
-        canvas.addEventListener('mousedown', (e) => {
-            if (e.offsetX >= userImageData.x && e.offsetX <= (userImageData.x + userImageData.width) &&
-                e.offsetY >= userImageData.y && e.offsetY <= (userImageData.y + userImageData.height)) {
-                isDragging = true;
-                offsetX = e.offsetX - userImageData.x;
-                offsetY = e.offsetY - userImageData.y;
-            }
-        });
-
-        canvas.addEventListener('mousemove', (e) => {
-            if (isDragging) {
-                userImageData.x = e.offsetX - offsetX;
-                userImageData.y = e.offsetY - offsetY;
-                drawCanvas();
-            }
-        });
-
-        canvas.addEventListener('mouseup', () => {
-            isDragging = false;
-        });
-
-        function updateSize() {
-            const size = parseFloat(document.getElementById('size').value) / 100;
-            userImageData.width = originalImageData.width * size;
-            userImageData.height = originalImageData.height * size;
-            userImageData.x = (canvas.width - userImageData.width) / 2;
-            userImageData.y = (canvas.height - userImageData.height) / 2;
-            drawCanvas();
-            document.getElementById('sizeValue').textContent = document.getElementById('size').value;
-        }
-
-        function resetSize() {
-            document.getElementById('size').value = 100;
-            updateSize();
-        }
-
-        function downloadImage() {
-            const quality = parseFloat(document.getElementById('quality').value);
-            const link = document.createElement('a');
-            link.download = 'twibbon-result.png';
-            link.href = canvas.toDataURL('image/png', quality);
-            link.click();
-        }
-
-        document.getElementById('size').addEventListener('input', updateSize);
-        window.addEventListener('load', updateSize); // Set initial size
-    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>
