@@ -67,30 +67,51 @@ function drawCanvas() {
   }
 }
 
-canvas.addEventListener("mousedown", (e) => {
+// Handle mouse and touch events for dragging
+function startDragging(e) {
+  const x =
+    e.offsetX || e.touches[0].clientX - canvas.getBoundingClientRect().left;
+  const y =
+    e.offsetY || e.touches[0].clientY - canvas.getBoundingClientRect().top;
+
   if (
-    e.offsetX >= userImageData.x &&
-    e.offsetX <= userImageData.x + userImageData.width &&
-    e.offsetY >= userImageData.y &&
-    e.offsetY <= userImageData.y + userImageData.height
+    x >= userImageData.x &&
+    x <= userImageData.x + userImageData.width &&
+    y >= userImageData.y &&
+    y <= userImageData.y + userImageData.height
   ) {
     isDragging = true;
-    offsetX = e.offsetX - userImageData.x;
-    offsetY = e.offsetY - userImageData.y;
+    offsetX = x - userImageData.x;
+    offsetY = y - userImageData.y;
   }
-});
+}
 
-canvas.addEventListener("mousemove", (e) => {
+function dragImage(e) {
   if (isDragging) {
-    userImageData.x = e.offsetX - offsetX;
-    userImageData.y = e.offsetY - offsetY;
+    const x =
+      e.offsetX || e.touches[0].clientX - canvas.getBoundingClientRect().left;
+    const y =
+      e.offsetY || e.touches[0].clientY - canvas.getBoundingClientRect().top;
+
+    userImageData.x = x - offsetX;
+    userImageData.y = y - offsetY;
     drawCanvas();
   }
-});
+}
 
-canvas.addEventListener("mouseup", () => {
+function stopDragging() {
   isDragging = false;
-});
+}
+
+canvas.addEventListener("mousedown", startDragging);
+canvas.addEventListener("mousemove", dragImage);
+canvas.addEventListener("mouseup", stopDragging);
+canvas.addEventListener("mouseleave", stopDragging); // Stop dragging if the mouse leaves the canvas
+
+canvas.addEventListener("touchstart", startDragging);
+canvas.addEventListener("touchmove", dragImage);
+canvas.addEventListener("touchend", stopDragging);
+canvas.addEventListener("touchcancel", stopDragging); // Stop dragging if the touch is canceled
 
 function updateSize() {
   const size = parseFloat(document.getElementById("size").value) / 100;
