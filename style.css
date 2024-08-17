@@ -13,11 +13,30 @@ nav {
   padding: 10px 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   position: sticky;
   top: 0;
   z-index: 10;
+}
+
+/* Hamburger Menu */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  order: -1; /* Moves hamburger menu before the logo */
+  margin-right: 15px;
+}
+
+.hamburger div {
+  background: #00796b;
+  height: 3px;
+  width: 25px;
+  margin: 4px 0;
+  border-radius: 2px;
+  transition: background 0.3s ease, transform 0.3s ease;
 }
 
 .logo {
@@ -26,6 +45,8 @@ nav {
   color: #00796b;
   text-transform: uppercase;
   letter-spacing: 1px;
+  flex: 1;
+  text-align: left;
 }
 
 .menu {
@@ -49,39 +70,24 @@ nav {
   transform: scale(1.05);
 }
 
-/* Hamburger Menu */
-.hamburger {
-  display: none;
-  flex-direction: column;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.hamburger div {
-  background: #00796b;
-  height: 3px;
-  width: 25px;
-  margin: 4px 0;
-  border-radius: 2px;
-  transition: background 0.3s ease, transform 0.3s ease;
-}
-
+/* Mobile Menu */
 .mobile-menu {
+  padding-top: 20px;
   display: none;
   flex-direction: column;
-  position: absolute;
-  top: 60px;
-  right: 20px;
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100%;
   background: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 10px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  transition: left 0.3s ease;
   z-index: 20;
-  width: 200px;
 }
 
 .mobile-menu a {
-  padding: 10px 15px;
+  padding: 15px 30px;
   color: #00796b;
   text-decoration: none;
   font-size: 16px;
@@ -96,7 +102,7 @@ nav {
 }
 
 .mobile-menu.show {
-  display: flex;
+  left: 0;
 }
 
 /* Container */
@@ -148,6 +154,7 @@ header p {
   font-weight: 700;
 }
 
+/* File Input */
 .file-input-container {
   display: flex;
   justify-content: center;
@@ -288,6 +295,13 @@ header p {
   border-radius: 8px;
   border: 1px solid #ccc;
   font-size: 16px;
+  background: #ffffff;
+  color: #00796b;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.download-options select:hover {
+  border-color: #00796b;
 }
 
 /* Footer Styles */
@@ -320,6 +334,24 @@ footer p {
   font-weight: 300;
 }
 
+/* Close Button */
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #00796b;
+  cursor: pointer;
+  padding: 10px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+  color: #004d40;
+}
+
 /* Media Queries for Responsive Design */
 @media (max-width: 768px) {
   .menu {
@@ -330,21 +362,12 @@ footer p {
     display: flex;
   }
 
-  header h1 {
-    font-size: 28px;
+  .mobile-menu {
+    display: flex;
   }
 
-  header p {
-    font-size: 16px;
-  }
-
-  .btn {
-    font-size: 14px;
-    padding: 10px 20px;
-  }
-
-  .slider-container input[type="range"] {
-    width: 100%;
+  .close-btn {
+    display: block;
   }
 }
 
@@ -386,4 +409,11 @@ footer p {
   width: 100%;
   max-width: 300px;
   margin: 0 auto;
+  background: #ffffff;
+  color: #00796b;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.template-selector select:hover {
+  border-color: #00796b;
 }

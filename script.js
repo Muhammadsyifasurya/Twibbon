@@ -10,11 +10,13 @@ let originalImageData = {};
 let userImageData = { x: 0, y: 0, width: 0, height: 0 };
 
 // Load initial template
-let currentTemplateSrc = templateSelector.value;
-twibbonImage.src = "assets/templates/${currentTemplateSrc}";
+function loadTemplate() {
+  const currentTemplateSrc = templateSelector.value;
+  twibbonImage.src = `assets/templates/${currentTemplateSrc}`;
+}
 
-// Path ke desain Twibbon yang sesuai
-// twibbonImage.src = "assets/twibbon1.png";
+// Load initial template when the page is loaded
+loadTemplate();
 
 twibbonImage.onload = () => {
   drawCanvas(); // Draw Twibbon design once it's loaded
@@ -42,9 +44,11 @@ upload.addEventListener("change", (e) => {
 });
 
 // Handle template change
-templateSelector.addEventListener("change", (e) => {
-  currentTemplateSrc = e.target.value;
-  twibbonImage.src = `assets/templates/${currentTemplateSrc}`;
+templateSelector.addEventListener("change", () => {
+  loadTemplate();
+  twibbonImage.onload = () => {
+    drawCanvas();
+  };
 });
 
 function drawCanvas() {
@@ -58,7 +62,9 @@ function drawCanvas() {
       userImageData.height
     );
   }
-  ctx.drawImage(twibbonImage, 0, 0, canvas.width, canvas.height);
+  if (twibbonImage.src) {
+    ctx.drawImage(twibbonImage, 0, 0, canvas.width, canvas.height);
+  }
 }
 
 canvas.addEventListener("mousedown", (e) => {
@@ -119,3 +125,25 @@ function toggleMenu() {
   const hamburger = document.querySelector(".hamburger");
   hamburger.classList.toggle("open");
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  const hamburger = document.querySelector(".hamburger");
+  const mobileMenu = document.querySelector(".mobile-menu");
+  const closeBtn = document.querySelector(".close-btn");
+
+  hamburger.addEventListener("click", function () {
+    mobileMenu.classList.add("show");
+  });
+
+  closeBtn.addEventListener("click", function () {
+    mobileMenu.classList.remove("show");
+  });
+});
+
+document.getElementById("hamburger").addEventListener("click", function () {
+  document.getElementById("mobileMenu").classList.add("show");
+});
+
+document.getElementById("closeMenu").addEventListener("click", function () {
+  document.getElementById("mobileMenu").classList.remove("show");
+});
