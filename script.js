@@ -35,11 +35,19 @@ canvas.addEventListener("touchmove", (e) => {
     const newDistance = getDistance(e.touches);
     const scale = newDistance / initialDistance;
 
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+
+    const prevWidth = userImageData.width;
+    const prevHeight = userImageData.height;
+
     userImageData.width = initialWidth * scale;
     userImageData.height = initialHeight * scale;
-    // Optional: jaga agar tetap di tengah
-    userImageData.x = (canvas.width - userImageData.width) / 2;
-    userImageData.y = (canvas.height - userImageData.height) / 2;
+
+    const scaleChange = userImageData.width / prevWidth;
+
+    userImageData.x = centerX - (centerX - userImageData.x) * scaleChange;
+    userImageData.y = centerY - (centerY - userImageData.y) * scaleChange;
 
     drawCanvas();
   } else {
@@ -156,7 +164,6 @@ canvas.addEventListener("mouseup", stopDragging);
 canvas.addEventListener("mouseleave", stopDragging); // Stop dragging if the mouse leaves the canvas
 
 canvas.addEventListener("touchstart", startDragging);
-canvas.addEventListener("touchmove", dragImage);
 canvas.addEventListener("touchend", stopDragging);
 canvas.addEventListener("touchcancel", stopDragging); // Stop dragging if the touch is canceled
 
