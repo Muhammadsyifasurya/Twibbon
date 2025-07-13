@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hubungi Kami - Twibbon Maker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(to right, #f9f9ff, #f1f5ff);
+            color: #222;
+            line-height: 1.6;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: fixed;
+            width: 100%;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #3b82f6;
+        }
+
+        .menu a {
+            margin-left: 1.5rem;
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .menu a:hover,
+        .menu a.active {
+            color: #3b82f6;
+        }
+
+        .mobile-menu a.active {
+            background: linear-gradient(to right, #06b6d4, #3b82f6);
+            color: #ffffff;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            padding-top: 60px;
+            display: none;
+            flex-direction: column;
+            position: fixed;
+            gap: 6px;
+            top: 0;
+            left: -220px;
+            width: 220px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            transition: left 0.3s ease;
+            z-index: 20;
+            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
+            border-top-right-radius: 30px;
+            border-bottom-right-radius: 30px;
+        }
+
+        .mobile-menu a {
+            padding: 10px 20px;
+            color: rgba(0, 0, 0, 0.85);
+            /* teks gelap semi-transparan */
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            display: block;
+            border-top-right-radius: 50px;
+            border-bottom-right-radius: 50px;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .mobile-menu a:hover {
+            background: linear-gradient(to right, #06b6d4, #3b82f6);
+            color: #ffffff;
+        }
+
+        .mobile-menu.show {
+            left: 0;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            order: -1;
+            /* Moves hamburger menu before the logo */
+            margin-right: 15px;
+        }
+
+        .hamburger div {
+            background: #000000;
+            height: 3px;
+            width: 20px;
+            margin: 2px 0;
+            border-radius: 2px;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+
+        header {
+            padding-top: 6rem;
+            padding-bottom: 3rem;
+            padding-left: 2rem;
+            padding-right: 2rem;
+            text-align: center;
+            background: linear-gradient(120deg, #06b6d4, #3b82f6);
+            color: white;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.2rem;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+        }
+
+        .card {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h2 {
+            margin-bottom: 1rem;
+            color: #3b82f6;
+        }
+
+        .social-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            background-color: #f1f5ff;
+            color: #1e293b;
+            text-decoration: none;
+            border-radius: 12px;
+            transition: background 0.3s;
+            font-weight: 500;
+        }
+
+        .social-links a:hover {
+            background-color: #dbeafe;
+        }
+
+        .social-links img {
+            width: 24px;
+            height: 24px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: #0f172a;
+            color: #cbd5e1;
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+        }
+
+        /* Close Button */
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #00796b;
+            cursor: pointer;
+            padding: 10px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            color: #004d40;
+        }
+
+
+        @media (max-width: 768px) {
+            nav {
+                justify-content: flex-start;
+                padding: 15px 20px;
+            }
+
+            .menu {
+                display: none;
+            }
+
+            .logo {
+                font-size: 16px;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .close-btn {
+                display: block;
+            }
+
+            footer {
+                font-size: 12px;
+            }
+
+            footer {
+                position: relative;
+                width: 100%;
+                bottom: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">Twibbon Maker</div>
+        <div class="menu">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="contact.html" class="active">Contact</a>
+        </div>
+        <div class="hamburger" id="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <button class="close-btn" id="closeMenu">&times;</button>
+            <a href="/">Home</a>
+            <a href="about.html">About</a>
+            <a href="contact.html" class="active">Contact</a>
+        </div>
+    </nav>
+
+    <header>
+        <h1>Yuk Terhubung!</h1>
+        <p>Kami aktif di media sosial dan siap kolaborasi. Hubungi kapan aja ✨</p>
+    </header>
+
+    <main>
+        <section class="card">
+            <h2>📱 Sosial Media & Support</h2>
+            <div class="social-links">
+                <a href="https://www.instagram.com/muhammadsyifasurya" target="_blank" rel="noopener">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" />
+                    Instagram
+                </a>
+                <a href="https://www.facebook.com/radenmanggalaa" target="_blank" rel="noopener">
+                    <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" />
+                    Facebook
+                </a>
+                <a href="https://www.linkedin.com/in/muhammadsyifasuryasaputra" target="_blank" rel="noopener">
+                    <img src="https://cdn-icons-png.flaticon.com/512/145/145807.png" alt="LinkedIn" />
+                    LinkedIn
+                </a>
+                <a href="https://saweria.co/radenmanggala" target="_blank" rel="noopener">
+                    <img src="https://cdn-icons-png.flaticon.com/512/825/825454.png" alt="Saweria" />
+                    Dukung di Saweria
+                </a>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>📬 Kontak Langsung</h2>
+            <p>Kamu juga bisa menghubungi kami langsung melalui email di:</p>
+            <p><strong>syifamuhammad3139@gmail.com</strong></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Muhammad Syifa Surya Saputra. All rights reserved.</p>
+    </footer>
+    <script src="/javascript/contact.js"></script>
+</body>
+
+</html>
