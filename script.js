@@ -88,6 +88,8 @@ function startDragging(e) {
 
 function dragImage(e) {
   if (isDragging) {
+    e.preventDefault();
+
     const x =
       e.offsetX || e.touches[0].clientX - canvas.getBoundingClientRect().left;
     const y =
