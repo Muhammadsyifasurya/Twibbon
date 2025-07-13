@@ -379,6 +379,33 @@ footer a:hover {
   }
 }
 
+.floating-donate-modern {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 40px;
+  height: 40px;
+  background-color: #f0f0f0; /* Warna Peach Modern */
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 1000;
+}
+
+.floating-donate-modern:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+.floating-donate-modern img {
+  width: 23px;
+  height: 23px;
+  filter: invert(1);
+}
+
 @media (max-width: 480px) {
   header h1 {
     font-size: 24px;
