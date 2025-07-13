@@ -8,6 +8,51 @@ let isDragging = false;
 let offsetX, offsetY;
 let originalImageData = {};
 let userImageData = { x: 0, y: 0, width: 0, height: 0 };
+let initialDistance = null;
+let initialWidth = 0;
+let initialHeight = 0;
+
+function getDistance(touches) {
+  const [touch1, touch2] = touches;
+  const dx = touch1.clientX - touch2.clientX;
+  const dy = touch1.clientY - touch2.clientY;
+  return Math.sqrt(dx * dx + dy * dy);
+}
+
+canvas.addEventListener("touchstart", (e) => {
+  if (e.touches.length === 2) {
+    initialDistance = getDistance(e.touches);
+    initialWidth = userImageData.width;
+    initialHeight = userImageData.height;
+  } else {
+    startDragging(e);
+  }
+});
+
+canvas.addEventListener("touchmove", (e) => {
+  if (e.touches.length === 2 && initialDistance !== null) {
+    e.preventDefault();
+    const newDistance = getDistance(e.touches);
+    const scale = newDistance / initialDistance;
+
+    userImageData.width = initialWidth * scale;
+    userImageData.height = initialHeight * scale;
+    // Optional: jaga agar tetap di tengah
+    userImageData.x = (canvas.width - userImageData.width) / 2;
+    userImageData.y = (canvas.height - userImageData.height) / 2;
+
+    drawCanvas();
+  } else {
+    dragImage(e);
+  }
+});
+
+canvas.addEventListener("touchend", (e) => {
+  if (e.touches.length < 2) {
+    initialDistance = null;
+    stopDragging();
+  }
+});
 
 // Load initial template
 function loadTemplate() {
